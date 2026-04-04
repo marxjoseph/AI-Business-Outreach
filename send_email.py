@@ -7,11 +7,11 @@ from email.mime.multipart import MIMEMultipart
 
 load_dotenv()
 
-client = OpenAI(os.getenv("API_KEY"))
+client = OpenAI(api_key=os.getenv("API_KEY"))
 
 response = client.responses.create(
     model="gpt-5.4-mini",
-    input="Write a short bedtime story about a unicorn."
+    input="Write a few sentences on the moon landing"
 )
 
 # Example usage
@@ -21,7 +21,7 @@ print(body)
 
 # Your email credentials
 EMAIL = "marquesjoseph03@gmail.com"
-PASSWORD = "adie tfou zyxd yxuv"
+PASSWORD = os.getenv("PASSWORD")
 
 # Receiver
 to_email = "josephmarques@cmail.carleton.ca"
