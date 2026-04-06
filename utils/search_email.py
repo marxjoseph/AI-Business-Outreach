@@ -2,13 +2,15 @@ import requests
 import re
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin, urlparse
+import urllib3
+
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+headers = {"User-Agent": "Mozilla/5.0"}
 
 def find_emails_on_page(url):
     """Fetch a webpage and extract all email addresses from it."""
-    headers = {"User-Agent": "Mozilla/5.0"}
-    
     try:
-        response = requests.get(url, headers=headers, timeout=10)
+        response = requests.get(url, headers=headers, timeout=10, verify=False)
         response.raise_for_status()
     except requests.RequestException as e:
         print(f"Error fetching {url}: {e}")
@@ -39,7 +41,7 @@ def crawl_site_for_emails(start_url, max_pages=10):
 
         # Find internal links to follow
         try:
-            soup = BeautifulSoup(requests.get(url, timeout=10).text, "html.parser")
+            soup = BeautifulSoup(requests.get(url, headers=headers, timeout=10,  verify=False).text, "html.parser")
             for a_tag in soup.find_all("a", href=True):
                 link = urljoin(url, a_tag["href"])
                 if urlparse(link).netloc == base_domain and link not in visited:
