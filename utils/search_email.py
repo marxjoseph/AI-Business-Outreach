@@ -22,7 +22,7 @@ def find_emails_on_page(url):
     
     return emails
 
-def crawl_site_for_emails(start_url, max_pages=10):
+def crawl_site_for_emails(start_url, max_pages=5):
     """Crawl a site (up to max_pages) and collect all emails found."""
     visited = set()
     to_visit = [start_url]
