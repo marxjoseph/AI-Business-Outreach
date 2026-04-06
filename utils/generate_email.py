@@ -2,15 +2,15 @@ import smtplib
 import os
 import requests
 import re
-from bs4 import BeautifulSoup
 from dotenv import load_dotenv
+from bs4 import BeautifulSoup
 from openai import OpenAI
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
 load_dotenv()
 
-client = OpenAI(api_key=os.getenv("API_KEY"))
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 def scrape_website(url):
     """Scrape text content from a website."""

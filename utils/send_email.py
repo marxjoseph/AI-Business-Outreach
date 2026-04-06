@@ -4,10 +4,11 @@ from dotenv import load_dotenv
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
+load_dotenv()
 
 # Your email credentials
 EMAIL = "marquesjoseph03@gmail.com"
-PASSWORD = os.getenv("PASSWORD")
+PASSWORD = os.getenv("EMAIL_PASSWORD")
 
 def send_email(to_email, body):
     # Create the email
